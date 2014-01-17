@@ -1,0 +1,33 @@
+<label for="profile_name">Nazwa:</label>
+<input type="text" name="profile[name]" value="<%= @profile.name %>"><br>
+
+<label for="profile_sex">Płeć:</label>
+<input type="radio" name="profile[sex]" value="1">Kobieta<br>
+<input type="radio" name="profile[sex]" value="2">Mężczyzna<br>
+
+<label for="profile_age">Wiek:</label>
+<input type="number" name="profile[age]" value="<%= @profile.age %>">
+<label for="profile_age">w latach</label><br>
+
+<label for="profile_weight">Waga:</label>
+<input type="number" name="profile[weight]" value="<%= @profile.weight %>">
+<label for="profile_weight">kg</label><br>
+
+<label for="profile_height">Wzorst:</label>
+<input type="number" name="profile[height]" value="<%= @profile.height %>">
+<label for="profile_height">cm</label><br>
+
+<label for="profile_activity_level">Poziom aktywności - wybierz, kierując się opisami pod formularzem:</label><br>
+<ol>
+<li><input type="radio" name="profile[activity_level]" value="1">brak aktywności</li>
+<li><input type="radio" name="profile[activity_level]" value="2">bardzo niska aktywność</li>
+<li><input type="radio" name="profile[activity_level]" value="3">niska aktywność</li>
+<li><input type="radio" name="profile[activity_level]" value="4">umiarkowana aktywność</li>
+<li><input type="radio" name="profile[activity_level]" value="5">duża aktywność</li>
+<li><input type="radio" name="profile[activity_level]" value="6">bardzo duża aktywność</li>
+</ol>
+
+<input type="submit" value="Zapisz dane">
+
+<%= erb :'profiles/profile_activity_levels' %>
+

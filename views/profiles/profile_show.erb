@@ -1,0 +1,55 @@
+<h1><%= @profile.name.capitalize %></h1>
+
+<table>
+  <tr>
+    <td>Płeć:</td>
+    <td><%= @sex %></td>
+  </tr>
+  <tr>
+    <td>Wiek:</td>
+    <td><%= "#{@profile.age} lat" %></td>
+  </tr>
+  <tr>
+    <td>Waga:</td>
+    <td><%= "#{@profile.weight} kg" %></td>
+  </tr>
+    <tr>
+    <td>Wzrost:</td>
+    <td><%= "#{@profile.height} cm" %></td>
+  </tr>
+    <tr>
+    <td>Poziom aktywności:</td>
+    <td><%= @profile.activity_level %></td>
+  </tr>
+  </tr>
+    <tr>
+    <td>Dzienne zapotrzebowanie kaloryczne:</td>
+    <td><%= "#{@profile.calories_need} g" %></td>
+  </tr>
+    </tr>
+    <tr>
+    <td>Białko - dzienne zapotrzebowanie:</td>
+    <td><%= "#{@profile.protein_need} g (#{@protein_kcal} kcal)" %></td>
+  </tr>
+    </tr>
+    <tr>
+    <td>Tłuszcze - dzienne zapotrzebowanie:</td>
+    <td><%= "#{@profile.fat_need} g (#{@fat_kcal} kcal)" %></td>
+  </tr>
+    </tr>
+    <tr>
+    <td>Węglowodany - dzienne zapotrzebowanie:</td>
+    <td><%= "#{@profile.carbs_need} g (#{@carbs_kcal} kcal)" %></td>
+  </tr>
+</table>
+
+<a href="/profiles/<%= @profile.id %>/edit">Zmień</a>
+
+<form action="/profiles/<%= @profile.id %>" method="POST" id="delete">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Usuń profil">
+</form>
+
+<a href="/profiles">Wróć do listy</a>
+
+<%= erb :'profiles/profile_activity_levels' %>

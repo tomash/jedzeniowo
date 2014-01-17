@@ -1,0 +1,15 @@
+<% if @article %>
+  <h1>Zmień dane artykułu</h1>
+  <form action="/articles/<%= @article.id %>" method="POST" id="edit">
+    <input type="hidden" name="_method" value="PUT">
+    <%= erb :'articles/article_form' %>
+  </form>
+  <form action="/articles/<%= @article.id %>" method="POST" id="delete">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Usuń artykuł">
+  </form>
+
+  <p><a href="/articles">Wróć do listy artykułów</a></p>
+<% else %>
+  <p>Nie ma takiego artykułu.</p>
+<% end %>

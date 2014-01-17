@@ -1,0 +1,19 @@
+<h1><%= @article.title.titelize %></h1>
+<h4><%= @article.created_at %></h4>
+
+<p><%= @{@article.content} %></p>
+
+<h3>Wartości w 100 g</h3>
+
+<h4><%= "Autor: #{@article.author}" %></h4>
+<h4><%= "Źródło: #{@article.source}" %></h4>
+
+<a href="/articles/<%= @article.id %>/edit">Zmień</a>
+
+<form action="/articles/<%= @article.id %>" method="POST" id="delete">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Usuń artykuł">
+</form>
+
+<a href="/articles">Wróć do listy artykułów</a>
+

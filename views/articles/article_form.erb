@@ -1,0 +1,13 @@
+<label for="article_title">Nazwa:</label>
+<input type="text" name="article[title]" value="<%= @article.title %>"><br>
+
+<label for="article_author">Autor:</label>
+<input type="text" name="article[author]" value="<%= @article.author %>"><br>
+
+<label for="article_source">Źródło:</label>
+<input type="text" name="article[source]" value="<%= @article.source %>"><br>
+
+<label for="article_content">Treść:</label>
+<textarea name="article[content]"><%= @article.content %></textarea><br>
+
+<input type="submit" value="Zapisz dane produktu">

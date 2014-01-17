@@ -1,0 +1,20 @@
+<label for="product_name">Nazwa:</label>
+<input type="text" name="product[name]" value="<%= @product.name %>"><br>
+
+<label for="product_calories">Kalorie:</label>
+<input type="number" step="any" min="0" name="product[calories]" value="<%= @product.calories %>">
+<label for="product_calories">kcal / 100g:</label><br>
+
+<label for="product_protein">Białko:</label>
+<input type="number" step="any" min="0" name="product[protein]" value="<%= @product.protein %>">
+<label for="product_protein">gram / 100g</label><br>
+
+<label for="product_fat">Tłuszcze:</label>
+<input type="number" step="any" min="0" name="product[fat]" value="<%= @product.fat %>">
+<label for="product_fat">gram / 100g</label><br>
+
+<label for="product_carbs">Węglowodany:</label>
+<input type="number" step="any" min="0" name="product[carbs]" value="<%= @product.carbs %>">
+<label for="product_carbs">gram / 100g</label><br>
+
+<input type="submit" value="Zapisz dane produktu">

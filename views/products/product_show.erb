@@ -1,0 +1,32 @@
+<h1><%= @product.name.capitalize %></h1>
+
+<h3>Wartości w 100 g</h3>
+
+<table>
+  <tr>
+    <td>Kalorie:</td>
+    <td><%= "#{@product.calories} kcal" %></td>
+  </tr>
+  <tr>
+    <td>Białko:</td>
+    <td><%= "#{@product.protein} g (#{@protein_kcal} kcal)" %></td>
+  </tr>
+    <tr>
+    <td>Tłuszcze:</td>
+    <td><%= "#{@product.fat} g (#{@fat_kcal} kcal)" %></td>
+  </tr>
+    <tr>
+    <td>Węglowodany:</td>
+    <td><%= "#{@product.carbs} g (#{@carbs_kcal} kcal)" %></td>
+  </tr>
+</table>
+
+<a href="/products/<%= @product.id %>/edit">Zmień</a>
+
+<form action="/products/<%= @product.id %>" method="POST" id="delete">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Usuń produkt">
+</form>
+
+<a href="/products">Wróć do listy produktów</a>
+

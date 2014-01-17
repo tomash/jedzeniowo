@@ -1,0 +1,15 @@
+<% if @profile %>
+  <h1>Zmień dane profilowe</h1>
+  <form action="/profiles/<%= @profile.id %>" method="POST" id="edit">
+    <input type="hidden" name="_method" value="PUT">
+    <%= erb :'profiles/profile_form' %>
+  </form>
+  <form action="/profiles/<%= @profile.id %>" method="POST" id="delete">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Usuń profil">
+  </form>
+
+  <p><a href="/profiles">Wróć do listy profili</a></p>
+<% else %>
+  <p>Nie ma takiego profilu.</p>
+<% end %>

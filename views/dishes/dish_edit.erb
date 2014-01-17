@@ -1,0 +1,15 @@
+# <% if @dish %>
+#   <h1>Zmień opis dania</h1>
+#   <form action="/dishes/<%= @dish.id %>" method="POST" id="edit">
+#     <input type="hidden" name="_method" value="PUT">
+#     <%= erb :'dishes/dish_form' %>
+#   </form>
+#   <form action="/dishes/<%= @dish.id %>" method="POST" id="delete">
+#     <input type="hidden" name="_method" value="DELETE">
+#     <input type="submit" value="Usuń danie">
+#   </form>
+
+#   <p><a href="/dishes">Wróć do listy dań</a></p>
+# <% else %>
+#   <p>Nie ma takiego dania.</p>
+# <% end %>

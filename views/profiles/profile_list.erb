@@ -1,0 +1,23 @@
+<h1>Twoje profile:</h1>
+
+<table>
+<% @profiles.each do |profile| %>
+  <tr>
+    <td>
+      <a href="/profiles/<%= profile.id %>"><%= profile.name %></a>
+    </td>
+
+    <td>
+      <a href="/profiles/<%= profile.id %>/edit">Zmień</a>
+    </td>
+
+    <td>
+      <form action="/profiles/<%= profile.id %>" method="POST" id="delete">
+        <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Usuń profil">
+      </form>
+    </td>
+  </tr>
+<% end %>
+</table>
+<a href="/profiles/new">Dodaj nowy profil</a>

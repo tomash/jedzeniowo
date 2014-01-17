@@ -1,0 +1,15 @@
+<% if @product %>
+  <h1>Zmień dane produktu</h1>
+  <form action="/products/<%= @product.id %>" method="POST" id="edit">
+    <input type="hidden" name="_method" value="PUT">
+    <%= erb :'products/product_form' %>
+  </form>
+  <form action="/products/<%= @product.id %>" method="POST" id="delete">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Usuń produkt">
+  </form>
+
+  <p><a href="/products">Wróć do listy produktów</a></p>
+<% else %>
+  <p>Nie ma takiego produktu.</p>
+<% end %>
