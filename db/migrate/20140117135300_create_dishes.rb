@@ -8,8 +8,9 @@ class CreateDishes < ActiveRecord::Migration
       d.float :dish_carbs
       d.integer :product_id
       d.float :product_weight
+      d.integer :ingredient_id
 
-      d.timestapms
+      d.timestamps
     end
   end
 

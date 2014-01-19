@@ -1,20 +1,29 @@
-<!-- <h1><%= @article.title.titelize %></h1>
-<h4><%= @article.created_at %></h4>
+<h1><%= @dish.dish_name.titleize %></h1>
+<h4><%= @dish.created_at %></h4>
 
-<p><%= @{@article.content} %></p>
+<h2>Składniki:</h2>
 
-<h3>Wartości w 100 g</h3>
+<ul>
+  <li><% ingredients = Ingredient.where("dish_id = ?", @dish.id) %>
+    <% ingredients.each do |i| %>
+      <% product = Product.where("ingredient_id = ?", i.id) %>
+      <% quantity = i.quantity_per_dish %>
+      <%= "#{quantity} #{product.name}" %>
+    <% end %>
+  </li>
+</ul>
 
-<h4><%= "Autor: #{@article.author}" %></h4>
-<h4><%= "Źródło: #{@article.source}" %></h4>
+<h2>Wykonanie:</h2>
 
-<a href="/articles/<%= @article.id %>/edit">Zmień</a>
+<p><%= @dish.steps %></p>
 
-<form action="/articles/<%= @article.id %>" method="POST" id="delete">
+<a href="/dishes/<%= @dish.id %>/edit">Zmień</a>
+
+<form action="/dishes/<%= @dish.id %>" method="POST" id="delete">
   <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Usuń artykuł">
+  <input type="submit" value="Usuń danie">
 </form>
 
-<a href="/articles">Wróć do listy artykułów</a>
+<a href="/dishes">Wróć do listy dań</a>
 
  -->

@@ -4,7 +4,7 @@ require 'active_record'
 require 'sinatra/activerecord'
 
 class Dish < ActiveRecord::Base
-
+  has_many :ingredients
 end
 
 ActiveRecord::Base.establish_connection(

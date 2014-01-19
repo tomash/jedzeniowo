@@ -1,13 +1,12 @@
 require 'sinatra/base'
 require 'sinatra/flash'
-require 'sinatra/namespace'
 
 load './helpers/dish_helper.rb'
 load './models/dish.rb'
+load './models/ingredient.rb'
+load './models/product.rb'
 
 class DishesController < ApplicationController
-
-  register Sinatra::Namespace
 
   helpers DishHelper, ApplicationHelper
 
@@ -22,6 +21,13 @@ class DishesController < ApplicationController
   post '/' do
     @dish = create_dish
     if @dish
+      @ingredient = Ingredient.create(
+        dish_id: @dish.id,
+        quantity_per_dish: params[:ingredient][:quantity_per_dish],
+        product_id: Product.where("name = ?",
+          params[:ingredient][:name]).id
+      )
+      @dish.ingredient_id = @ingredient.id
       flash[:notice] = "Danie dodane do listy."
       redirect to("/#{@dish.id}")
     else
@@ -31,11 +37,13 @@ class DishesController < ApplicationController
 
   get '/new' do
     @dish = Dish.new
+    @ingredient = Ingredient.new(dish_id: @dish.id)
+    @products = Product.all
     erb :"dishes/dish_new"
   end
 
   get '/:id' do
-    @dish = find_product
+    @dish = find_dish
     erb :"dishes/dish_show"
   end
 

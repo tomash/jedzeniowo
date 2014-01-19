@@ -10,13 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140116143556) do
+ActiveRecord::Schema.define(version: 20140119075438) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
     t.text     "content"
     t.string   "author"
     t.string   "source"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dishes", force: true do |t|
+    t.text     "steps"
+    t.float    "dish_calories"
+    t.float    "dish_protein"
+    t.float    "dish_fat"
+    t.float    "dish_carbs"
+    t.integer  "ingredient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "dish_name"
+  end
+
+  create_table "ingredients", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "dish_id"
+    t.float    "quantity_per_dish"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140116143556) do
     t.float    "carbs"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ingredient_id"
   end
 
   create_table "profiles", force: true do |t|
