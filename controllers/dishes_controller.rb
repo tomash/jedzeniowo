@@ -18,15 +18,41 @@ class DishesController < ApplicationController
     erb :"dishes/dish_list"
   end
 
+  # TODO: remove this comment after understanding and implementing everything
+  # example parameters posted:
+  # {
+  #   "dish"=>{"dish_name"=>"Danie1234", "steps"=>"xxx"},
+  #   "ingredient"=>{
+  #     "0"=>{"quantity_per_dish"=>"3"},
+  #     "1"=>{"quantity_per_dish"=>"4"},
+  #     "2"=>{"quantity_per_dish"=>""},
+  #     "3"=>{"quantity_per_dish"=>""},
+  #     "4"=>{"quantity_per_dish"=>""}
+  #   },
+  #   "product"=>{
+  #     "0"=>{"name"=>"produkt1"},
+  #     "1"=>{"name"=>"produkt2"},
+  #     "2"=>{"name"=>"produkt1"},
+  #     "3"=>{"name"=>"produkt1"},
+  #     "4"=>{"name"=>"produkt1"}
+  #   }
+  # }
   post '/' do
     @products = Product.all
     @dish = create_dish
-    dish_product = @products.where("name =?", params[:product][:name]).first
-    @ingredient = @dish.ingredients.build(
-      quantity_per_dish: params[:ingredient][:quantity_per_dish]
-    )
-    @ingredient.update(product_id: dish_product.id.to_i)
-    dish_product.update(ingredient_id: @ingredient.id.to_i)
+
+    # params[:ingredient] is now a hash
+    params[:ingredient].each do |i, quantity_hash|
+      # early exit: don't process ingredients with no amount
+      next if quantity_hash[:quantity_per_dish].to_f < 1
+      # we use the same 'i' for numbering products and quantities-per-dish (good!)
+      dish_product = @products.where(name: params[:product][i][:name]).first
+      @ingredient = @dish.ingredients.build(
+        quantity_per_dish: quantity_hash[:quantity_per_dish]
+      )
+      @ingredient.update(product_id: dish_product.id.to_i)
+    end
+
     if @dish
       flash[:notice] = "Danie dodane do listy."
       redirect to("/#{@dish.id}")

@@ -3,8 +3,8 @@
 
 <h3>Wybierz składnik z listy i podaj jego ilość:</h3>
 
-<% 5.times do %>
-  <%= erb :'ingredients/ingredient_form' %>
+<% 5.times do |i| %>
+  <%= erb :'ingredients/ingredient_form', locals: { i: i } %>
 <% end %>
 
 <label for="dish_steps">Sposób przyrządzenia:</label>

@@ -1,5 +1,5 @@
-<input type="number" step="any" min="0" name="ingredient[quantity_per_dish]" value="<%= @ingredient.quantity_per_dish %>">
-<select name="product[name]">
+<input type="number" step="any" min="0" name="ingredient[<%= i %>][quantity_per_dish]" value="<%= @ingredient.quantity_per_dish %>">
+<select name="product[<%= i %>][name]">
   <% @products.each do |p| %>
     <option><%= p.name %></option>
   <% end %>
