@@ -5,7 +5,7 @@ require 'sinatra/activerecord'
 
 class Product < ActiveRecord::Base
   validates_presence_of :name
-  has_many :ingredients
+  has_many :ingredients, dependent: :destroy
 end
 
 ActiveRecord::Base.establish_connection(
