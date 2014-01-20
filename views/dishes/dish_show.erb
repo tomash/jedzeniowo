@@ -4,13 +4,11 @@
 <h2>Składniki:</h2>
 
 <ul>
-  <li><% ingredients = Ingredient.where("dish_id = ?", @dish.id) %>
-    <% ingredients.each do |i| %>
-      <% product = Product.where("ingredient_id = ?", i.id) %>
-      <% quantity = i.quantity_per_dish %>
-      <%= "#{quantity} #{product.name}" %>
-    <% end %>
-  </li>
+  <% @ingredients_collection.each do |ingredient, amount| %>
+    <li>
+      <%= "#{ingredient}: #{amount}" %>
+    </li>
+  <% end %>
 </ul>
 
 <h2>Wykonanie:</h2>

@@ -19,15 +19,10 @@ class DishesController < ApplicationController
   end
 
   post '/' do
+    @products = Product.all
     @dish = create_dish
+    @ingredient = create_ingredient(@dish, @products)
     if @dish
-      @ingredient = Ingredient.create(
-        dish_id: @dish.id,
-        quantity_per_dish: params[:ingredient][:quantity_per_dish],
-        product_id: Product.where("name = ?",
-          params[:ingredient][:name]).id
-      )
-      @dish.ingredient_id = @ingredient.id
       flash[:notice] = "Danie dodane do listy."
       redirect to("/#{@dish.id}")
     else
@@ -37,24 +32,33 @@ class DishesController < ApplicationController
 
   get '/new' do
     @dish = Dish.new
-    @ingredient = Ingredient.new(dish_id: @dish.id)
     @products = Product.all
+    @ingredient = Ingredient.new
     erb :"dishes/dish_new"
   end
 
   get '/:id' do
     @dish = find_dish
+    @ingredients = @dish.ingredients
+    @ingredients_collection = find_ingredients_products(@ingredients)
     erb :"dishes/dish_show"
   end
 
   get '/:id/edit' do
     @dish = find_dish
+    @products = Product.all
+    @ingredient = @dish.ingredients.first
     erb :"dishes/dish_edit"
   end
 
   put '/:id' do
-    dish = find_dish
-    if dish.update(params[:dish])
+    @dish = find_dish
+    @products = Product.all
+    @ingredient = @dish.ingredients
+    if @dish.update(params[:dish])
+      dish_product = @products.where("name =?", params[:product][:name]).first
+      @ingredient.first.update(quantity_per_dish: params[:ingredient][:quantity_per_dish], product_id: dish_product.id.to_i)
+      dish_product.update(ingredient_id: @ingredient.first.id.to_i)
       flash[:notice] = "Danie zostało zaktualizowane."
     end
     redirect to('/')
